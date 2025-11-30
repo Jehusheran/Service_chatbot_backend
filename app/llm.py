@@ -35,8 +35,8 @@ logger = logging.getLogger("llm")
 logger.setLevel(logging.INFO)
 
 # Primary SalesIQ settings (user must provide)
-SALESIQ_API_URL = os.getenv("SALESIQ_API_URL, https://salesiq.zoho.in ")  # e.g. "https://api.zoho.com/salesiq/generate"
-SALESIQ_API_KEY = os.getenv("SALESIQ_API_KEY")
+SALESIQ_API_URL = os.getenv("SALESIQ_API_URL, “https://salesiq.zoho.in")  # e.g. "https://api.zoho.com/salesiq/generate"
+SALESIQ_API_KEY = os.getenv("SALESIQ_API_KEY, MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiIQwaAqcSWA4Gury1volPwsO5U6UT0mB551G+I74jzgcLW+qs2z2NtyNq4NaoeaVh4/NwfyLi2W+FXzHJ3WjBOZgESXZTI8tWV+2jOjo8xJK/OGSPlT2IBNNunGLlKju7LXVZ411xHBzX53UtA/o1ixCPDq9EtJNqRA+VmA2CGY+RRnOqSea/u5dfcUqYnjpme1ti6dr5OSP4G9IPUCQk9xff1wKhWyO8xwvV5Mo3JLEF/wgwpjHYFzhWxHQzN4KFL+TvLvfe89XhsjwsgMK/qJcfgFqFhZ2OPFgoSsIVHLbFYBArpitvIt+LbDsp2OUpv/ANpGZ3ZAINDBio7YGUQIDAQAB")
 SALESIQ_MODEL = os.getenv("SALESIQ_MODEL", "salesiq-default-model")
 SALESIQ_EMBEDDING_URL = os.getenv("SALESIQ_EMBEDDING_URL")  # optional endpoint for embeddings
 
