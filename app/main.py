@@ -91,6 +91,7 @@ def create_app() -> Flask:
     origins = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://service-chatbot-frontend-coral.vercel.app",
         os.getenv("FRONTEND_URL", "")
     ]
     CORS(app, origins=[o for o in origins if o], supports_credentials=True)
