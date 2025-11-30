@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: service_chat
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    depends_on: [db]
+    volumes:
+      - ./:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/service_chat
+    ports:
+      - "8000:8000"
+volumes:
+  db-data:

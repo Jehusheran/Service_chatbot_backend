@@ -1,0 +1,38 @@
+# Use official Python slim image
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Create app user and workdir
+RUN useradd --create-home appuser
+WORKDIR /app
+
+# System deps for compiling some wheels
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    curl \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy only requirements first for better caching
+COPY requirements.txt /app/requirements.txt
+
+# Install python deps
+RUN pip install --upgrade pip wheel setuptools
+# Install common binary deps (psycopg[binary] includes binary wheel); include greenlet, asyncpg
+RUN pip install "psycopg[binary]" greenlet asyncpg
+# Install rest of requirements (if your requirements pin these you can install them)
+RUN pip install -r /app/requirements.txt
+
+# Copy project
+COPY . /app
+
+# Make entrypoint executable
+RUN chmod +x /app/entrypoint.sh
+
+# Switch to non-root user
+USER appuser
+
+# Default command is the entrypoint script (exec form)
+ENTRYPOINT ["/app/entrypoint.sh"]

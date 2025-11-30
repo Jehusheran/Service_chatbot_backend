@@ -1,0 +1,15 @@
+Flask>=2.2
+flask-cors
+sqlmodel
+SQLAlchemy>=1.4
+psycopg[binary]
+asyncpg
+python-dotenv
+marshmallow
+passlib[bcrypt]
+python-jose[cryptography]
+openai
+google-api-python-client
+twilio
+greenlet
+gunicorn
